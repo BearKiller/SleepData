@@ -5,6 +5,7 @@ Console.WriteLine("Enter 2 to parse data.");
 Console.WriteLine("Enter anything else to quit.");
 // input response
 string? resp = Console.ReadLine();
+string data = "data.txt";
 if (resp == "1")
 {
     // create data file
@@ -20,7 +21,7 @@ if (resp == "1")
     DateTime dataDate = dataEndDate.AddDays(-(weeks * 7));
     // random number generator
     Random rnd = new Random();
-    StreamWriter sw = new StreamWriter("data.txt");
+    StreamWriter sw = new StreamWriter(data);
     // loop for the desired # of weeks
     while (dataDate < dataEndDate)
     {
@@ -40,4 +41,10 @@ if (resp == "1")
 }
 else if (resp == "2")
 {
+    if (File.Exists(data)){
+        Console.WriteLine("Hoory! The file exists.");
+
+    } else {
+        Console.WriteLine("File does not exist. Please create a file first.");
+    }
 }
