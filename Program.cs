@@ -52,9 +52,16 @@ else if (resp == "2")
             string dateSplit = line.Split(',').First();
             string timeSplit = line.Split(',').Last();
 
-            Console.WriteLine(dateSplit);
-            Console.WriteLine(timeSplit);
+            // Converts the dateSplit string into a DateTime var
+            var parsedDate = DateTime.Parse(dateSplit);
             
+            string[] timeArrStr = timeSplit.Split('|');
+            int[] timeArr = Array.ConvertAll(timeArrStr, s => int.Parse(s));
+            Console.WriteLine($"Week of {parsedDate:MMM, dd, yyyy}");
+            Console.WriteLine(" Su Mo Tu We Th Fr Sa Tot Avg");
+            Console.WriteLine(" -- -- -- -- -- -- -- --- ---");
+            Console.WriteLine($"{timeArr[0],3}{timeArr[1],3}{timeArr[2],3}{timeArr[3],3}{timeArr[4],3}{timeArr[5],3}{timeArr[6],3}{timeArr.Sum(), 4}{timeArr.Average(), 4:n1}\n");
+
             count += 1;
         } sr.Close();
 
