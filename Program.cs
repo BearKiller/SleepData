@@ -42,9 +42,24 @@ if (resp == "1")
 else if (resp == "2")
 {
     if (File.Exists(data)){
-        Console.WriteLine("Hoory! The file exists.");
+        int count = 0;
+        StreamReader sr = new StreamReader(data);
+        while (!sr.EndOfStream) {
+            // Reads a line of data and converts it all to string
+            string line = sr.ReadLine();
+
+            // Splits the string between the date and time
+            string dateSplit = line.Split(',').First();
+            string timeSplit = line.Split(',').Last();
+
+            Console.WriteLine(dateSplit);
+            Console.WriteLine(timeSplit);
+            
+            count += 1;
+        } sr.Close();
 
     } else {
         Console.WriteLine("File does not exist. Please create a file first.");
     }
+
 }
